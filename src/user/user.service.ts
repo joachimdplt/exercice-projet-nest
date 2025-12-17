@@ -2,9 +2,14 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
+
 @Injectable()
 export class UserService {
   create(createUserDto: CreateUserDto) {
+    /// Je créer la variable creation USER > ça ne marche pas il faut utiliser prisma dans le service via le constructeur
+    const userCreated = 
+
+
     return 'This action adds a new user';
   }
 
