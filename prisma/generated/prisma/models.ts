@@ -11,4 +11,7 @@
 export type * from './models/Formation.js'
 export type * from './models/User.js'
 export type * from './models/Post.js'
+export type * from './models/Group.js'
+export type * from './models/TeamMember.js'
+export type * from './models/Student.js'
 export type * from './commonInputTypes.js'

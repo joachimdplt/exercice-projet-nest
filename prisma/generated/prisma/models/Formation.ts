@@ -208,6 +208,7 @@ export type FormationWhereInput = {
   name?: Prisma.StringFilter<"Formation"> | string
   createdAt?: Prisma.DateTimeFilter<"Formation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Formation"> | Date | string
+  groups?: Prisma.GroupListRelationFilter
 }
 
 export type FormationOrderByWithRelationInput = {
@@ -215,6 +216,7 @@ export type FormationOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  groups?: Prisma.GroupOrderByRelationAggregateInput
   _relevance?: Prisma.FormationOrderByRelevanceInput
 }
 
@@ -226,6 +228,7 @@ export type FormationWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"Formation"> | string
   createdAt?: Prisma.DateTimeFilter<"Formation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Formation"> | Date | string
+  groups?: Prisma.GroupListRelationFilter
 }, "id">
 
 export type FormationOrderByWithAggregationInput = {
@@ -254,6 +257,7 @@ export type FormationCreateInput = {
   name: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  groups?: Prisma.GroupCreateNestedManyWithoutFormationInput
 }
 
 export type FormationUncheckedCreateInput = {
@@ -261,12 +265,14 @@ export type FormationUncheckedCreateInput = {
   name: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  groups?: Prisma.GroupUncheckedCreateNestedManyWithoutFormationInput
 }
 
 export type FormationUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groups?: Prisma.GroupUpdateManyWithoutFormationNestedInput
 }
 
 export type FormationUncheckedUpdateInput = {
@@ -274,6 +280,7 @@ export type FormationUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groups?: Prisma.GroupUncheckedUpdateManyWithoutFormationNestedInput
 }
 
 export type FormationCreateManyInput = {
@@ -331,6 +338,11 @@ export type FormationSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
 }
 
+export type FormationScalarRelationFilter = {
+  is?: Prisma.FormationWhereInput
+  isNot?: Prisma.FormationWhereInput
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
@@ -347,6 +359,91 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type FormationCreateNestedOneWithoutGroupsInput = {
+  create?: Prisma.XOR<Prisma.FormationCreateWithoutGroupsInput, Prisma.FormationUncheckedCreateWithoutGroupsInput>
+  connectOrCreate?: Prisma.FormationCreateOrConnectWithoutGroupsInput
+  connect?: Prisma.FormationWhereUniqueInput
+}
+
+export type FormationUpdateOneRequiredWithoutGroupsNestedInput = {
+  create?: Prisma.XOR<Prisma.FormationCreateWithoutGroupsInput, Prisma.FormationUncheckedCreateWithoutGroupsInput>
+  connectOrCreate?: Prisma.FormationCreateOrConnectWithoutGroupsInput
+  upsert?: Prisma.FormationUpsertWithoutGroupsInput
+  connect?: Prisma.FormationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.FormationUpdateToOneWithWhereWithoutGroupsInput, Prisma.FormationUpdateWithoutGroupsInput>, Prisma.FormationUncheckedUpdateWithoutGroupsInput>
+}
+
+export type FormationCreateWithoutGroupsInput = {
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type FormationUncheckedCreateWithoutGroupsInput = {
+  id?: number
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type FormationCreateOrConnectWithoutGroupsInput = {
+  where: Prisma.FormationWhereUniqueInput
+  create: Prisma.XOR<Prisma.FormationCreateWithoutGroupsInput, Prisma.FormationUncheckedCreateWithoutGroupsInput>
+}
+
+export type FormationUpsertWithoutGroupsInput = {
+  update: Prisma.XOR<Prisma.FormationUpdateWithoutGroupsInput, Prisma.FormationUncheckedUpdateWithoutGroupsInput>
+  create: Prisma.XOR<Prisma.FormationCreateWithoutGroupsInput, Prisma.FormationUncheckedCreateWithoutGroupsInput>
+  where?: Prisma.FormationWhereInput
+}
+
+export type FormationUpdateToOneWithWhereWithoutGroupsInput = {
+  where?: Prisma.FormationWhereInput
+  data: Prisma.XOR<Prisma.FormationUpdateWithoutGroupsInput, Prisma.FormationUncheckedUpdateWithoutGroupsInput>
+}
+
+export type FormationUpdateWithoutGroupsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type FormationUncheckedUpdateWithoutGroupsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+
+/**
+ * Count Type FormationCountOutputType
+ */
+
+export type FormationCountOutputType = {
+  groups: number
+}
+
+export type FormationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  groups?: boolean | FormationCountOutputTypeCountGroupsArgs
+}
+
+/**
+ * FormationCountOutputType without action
+ */
+export type FormationCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FormationCountOutputType
+   */
+  select?: Prisma.FormationCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * FormationCountOutputType without action
+ */
+export type FormationCountOutputTypeCountGroupsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.GroupWhereInput
+}
 
 
 export type FormationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -354,6 +451,8 @@ export type FormationSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   name?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  groups?: boolean | Prisma.Formation$groupsArgs<ExtArgs>
+  _count?: boolean | Prisma.FormationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["formation"]>
 
 
@@ -366,10 +465,16 @@ export type FormationSelectScalar = {
 }
 
 export type FormationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "createdAt" | "updatedAt", ExtArgs["result"]["formation"]>
+export type FormationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  groups?: boolean | Prisma.Formation$groupsArgs<ExtArgs>
+  _count?: boolean | Prisma.FormationCountOutputTypeDefaultArgs<ExtArgs>
+}
 
 export type $FormationPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Formation"
-  objects: {}
+  objects: {
+    groups: Prisma.$GroupPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     name: string
@@ -715,6 +820,7 @@ readonly fields: FormationFieldRefs;
  */
 export interface Prisma__FormationClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  groups<T extends Prisma.Formation$groupsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Formation$groupsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -765,6 +871,10 @@ export type FormationFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Int
    */
   omit?: Prisma.FormationOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FormationInclude<ExtArgs> | null
+  /**
    * Filter, which Formation to fetch.
    */
   where: Prisma.FormationWhereUniqueInput
@@ -783,6 +893,10 @@ export type FormationFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensi
    */
   omit?: Prisma.FormationOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FormationInclude<ExtArgs> | null
+  /**
    * Filter, which Formation to fetch.
    */
   where: Prisma.FormationWhereUniqueInput
@@ -800,6 +914,10 @@ export type FormationFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Omit specific fields from the Formation
    */
   omit?: Prisma.FormationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FormationInclude<ExtArgs> | null
   /**
    * Filter, which Formation to fetch.
    */
@@ -849,6 +967,10 @@ export type FormationFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensio
    */
   omit?: Prisma.FormationOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FormationInclude<ExtArgs> | null
+  /**
    * Filter, which Formation to fetch.
    */
   where?: Prisma.FormationWhereInput
@@ -897,6 +1019,10 @@ export type FormationFindManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    */
   omit?: Prisma.FormationOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FormationInclude<ExtArgs> | null
+  /**
    * Filter, which Formations to fetch.
    */
   where?: Prisma.FormationWhereInput
@@ -940,6 +1066,10 @@ export type FormationCreateArgs<ExtArgs extends runtime.Types.Extensions.Interna
    */
   omit?: Prisma.FormationOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FormationInclude<ExtArgs> | null
+  /**
    * The data needed to create a Formation.
    */
   data: Prisma.XOR<Prisma.FormationCreateInput, Prisma.FormationUncheckedCreateInput>
@@ -968,6 +1098,10 @@ export type FormationUpdateArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Omit specific fields from the Formation
    */
   omit?: Prisma.FormationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FormationInclude<ExtArgs> | null
   /**
    * The data needed to update a Formation.
    */
@@ -1009,6 +1143,10 @@ export type FormationUpsertArgs<ExtArgs extends runtime.Types.Extensions.Interna
    */
   omit?: Prisma.FormationOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FormationInclude<ExtArgs> | null
+  /**
    * The filter to search for the Formation to update in case it exists.
    */
   where: Prisma.FormationWhereUniqueInput
@@ -1035,6 +1173,10 @@ export type FormationDeleteArgs<ExtArgs extends runtime.Types.Extensions.Interna
    */
   omit?: Prisma.FormationOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FormationInclude<ExtArgs> | null
+  /**
    * Filter which Formation to delete.
    */
   where: Prisma.FormationWhereUniqueInput
@@ -1055,6 +1197,30 @@ export type FormationDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Int
 }
 
 /**
+ * Formation.groups
+ */
+export type Formation$groupsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Group
+   */
+  select?: Prisma.GroupSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Group
+   */
+  omit?: Prisma.GroupOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GroupInclude<ExtArgs> | null
+  where?: Prisma.GroupWhereInput
+  orderBy?: Prisma.GroupOrderByWithRelationInput | Prisma.GroupOrderByWithRelationInput[]
+  cursor?: Prisma.GroupWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.GroupScalarFieldEnum | Prisma.GroupScalarFieldEnum[]
+}
+
+/**
  * Formation without action
  */
 export type FormationDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1066,4 +1232,8 @@ export type FormationDefaultArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Omit specific fields from the Formation
    */
   omit?: Prisma.FormationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FormationInclude<ExtArgs> | null
 }
