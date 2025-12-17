@@ -6,10 +6,18 @@ import {
 } from '@nestjs/common';
 import { CreateFormationDto } from './dto/create-formation.dto';
 import { UpdateFormationDto } from './dto/update-formation.dto';
+// import { Formation } from './entities/formation.entity';
+import { PrismaService } from 'prisma/prisma.service';
 import { Formation } from './entities/formation.entity';
+import { Prisma } from 'prisma/generated/prisma/client';
 
 @Injectable()
 export class FormationService {
+
+  constructor(private readonly prisma : PrismaService){
+    
+    
+  }
   //On creer un objet de tableau
  formations: Formation[] = [];
   private counter = 1;
@@ -30,24 +38,32 @@ export class FormationService {
       createdAt: new Date(),
       updatedAt: new Date(),
     };
-  
+    this.formations.push(formation); 
 
     console.log('🚀 ~ FormationService ~ create ~ formation:', formation);
 
     return formation;
   }
 
-  findAll() {
-    console.log('🚀 ~ FormationService ~ findAll ~ findAll:', this.formations);
-    return this.formations;
+  async findAll(options : {take?:number, skip?: number, select: Prisma.FormationSelect}):Promise<Partial<Formation>[]> {
+    return this.prisma.formation.findMany({
+    ...options
+    })
   }
 
-  findOne(id: number) {
-    const formation = this.formations.find(formation => formation.id === id);
-    if (!formation) throw new NotFoundException(`formation avec id ${id} non trouvée`)
-      console.log("🚀 ~ FormationService ~ findOne ~ formation:", formation.id)
-    return {id: formation.id };
+  ///Gerer dans le controller les responsabilités
+ findOne(id: number) {
+  const formation = this.formations.find(f => f.id === id);
+
+  if (!formation) {
+    throw new NotFoundException(`formation avec id ${id} non trouvée`);
   }
+
+  console.log("🚀 ~ FormationService ~ findOne ~ formation:", formation);
+
+  return formation;
+}
+
 
   update(id: number, bodyFormation : UpdateFormationDto) {
   // Chercher la formation dans le tableau
