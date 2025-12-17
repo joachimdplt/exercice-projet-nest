@@ -13,7 +13,7 @@ export class UserService {
     ///  1 - Je créer la variable creation USER > ça ne marche pas il faut utiliser prisma dans le service via le constructeur
     ///  3 -  J'appelle le service de manière async mais je reçois une erreur sur create()
     /// click sur le verbe > Affiche les argument pour créer un user
-    // j'ajoute un objet avec clef data qui elle meme est un objet 
+    /// j'ajoute un objet avec clef data qui elle meme est un objet 
     const userCreated = await this.prisma.user.create({
       data: {
         name : createUserDto.name,
@@ -24,9 +24,11 @@ export class UserService {
 
     return userCreated;
   }
-
-  findAll() {
-    return `This action returns all user`;
+  /// Je passe en async puis je declare une variable user qui appelle la methode findMany
+  /// Je suis le même process depuis le verbe j'accède aux arguments ainsi que qu'au type attendu
+  async findAll() {
+    const users = await this.prisma.user.findMany()
+    return users;
   }
 
   findOne(id: number) {
