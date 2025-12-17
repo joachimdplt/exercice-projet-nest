@@ -9,10 +9,17 @@ export class UserService {
   // 2- J'ajoute un constructor pour utiliser prisma dans le service
   constructor(private prisma : PrismaService) {}
 
-  create(createUserDto: CreateUserDto) {
+  async create(createUserDto: CreateUserDto) {
     ///  1 - Je créer la variable creation USER > ça ne marche pas il faut utiliser prisma dans le service via le constructeur
     ///  3 -  J'appelle le service de manière async mais je reçois une erreur sur create()
-    const userCreated = await this.prisma.user.create()
+    /// click sur le verbe > Affiche les argument pour créer un user
+    // j'ajoute un objet avec clef data qui elle meme est un objet 
+    const userCreated = await this.prisma.user.create({
+      data: {
+        name : createUserDto.name,
+        email: createUserDto.email
+      } 
+    })
 
 
     return 'This action adds a new user';
