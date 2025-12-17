@@ -1,18 +1,19 @@
 import { IsOptional, IsNumberString} from 'class-validator';
 import { Transform } from 'class-transformer';
 
+/// Erreur de type sur Type(()=> Number)
 
 export class FindAllFormationQueryDto {
 
     @IsOptional()
     @IsNumberString()
-    @Type(()=> Number)
+    //@Type(()=> Number)
     take?: number;
 
 
     @IsNumberString()
     @IsOptional()
-    @Type(()=> Number)
+    //@Type(()=> Number)
     // @Transform( ParseInt )
         // (v)=>{
         // return +v}
