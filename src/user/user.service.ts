@@ -22,7 +22,7 @@ export class UserService {
     })
 
 
-    return 'This action adds a new user';
+    return userCreated;
   }
 
   findAll() {
