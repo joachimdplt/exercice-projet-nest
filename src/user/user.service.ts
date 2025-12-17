@@ -11,7 +11,8 @@ export class UserService {
 
   create(createUserDto: CreateUserDto) {
     ///  1 - Je créer la variable creation USER > ça ne marche pas il faut utiliser prisma dans le service via le constructeur
-    const userCreated = 
+    ///  3 -  J'appelle le service de manière async mais je reçois une erreur sur create()
+    const userCreated = await this.prisma.user.create()
 
 
     return 'This action adds a new user';
