@@ -8,7 +8,18 @@ export class GroupService {
   constructor( private prisma : PrismaService){}
   async create(createGroupDto: CreateGroupDto) {
 
-    const groupCreated = await this.prisma.group.create()
+    const groupCreated = await this.prisma.group.create({
+      data: {
+        name: createGroupDto.name,
+        formation: {
+          connect: { id: createGroupDto.formationId } // relie la Formation existante
+        },
+        lead: {
+          connect: { id: createGroupDto.leadId } // relie le TeamMember existant
+        }
+
+      }
+    })
     return 'This action adds a new group';
   }
 
