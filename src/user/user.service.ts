@@ -22,6 +22,7 @@ export class UserService {
     })
 
 
+    console.log("🚀 ~ UserService ~ create ~ userCreated:", userCreated)
     return userCreated;
   }
   /// Je passe en async puis je declare une variable user qui appelle la methode findMany
