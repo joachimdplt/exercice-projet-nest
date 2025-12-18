@@ -29,6 +29,8 @@ export class UserService {
   /// Je suis le même process depuis le verbe j'accède aux arguments ainsi que qu'au type attendu
   async findAll() {
     const users = await this.prisma.user.findMany()
+    console.log("🚀 ~ UserService ~ findAll ~ users:", users)
+    
     return users;
   }
 
